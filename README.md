@@ -2,6 +2,11 @@
 
 Un traductor de código Pascal a Python desarrollado en C utilizando Flex (lexer) y Bison (parser). Este proyecto permite convertir automáticamente programas escritos en Pascal a su equivalente en Python.
 
+## Autores
+
+- **Boris Omar Calcina Chipana**
+- **Alex Daniel Quispe Tapia**
+
 ## Características
 
 - **Análisis léxico completo**: Reconoce tokens de Pascal incluyendo palabras clave, identificadores, números, cadenas y operadores
@@ -246,6 +251,6 @@ Para contribuir al proyecto:
 
 Este proyecto está disponible bajo licencia MIT. Ver archivo LICENSE para más detalles.
 
-## Autor
+## Desarrollado por
 
-Desarrollado como proyecto académico para el curso de Compiladores.
+Proyecto académico desarrollado para el curso de Compiladores por Boris Omar Calcina Chipana y Alex Daniel Quispe Tapia.
