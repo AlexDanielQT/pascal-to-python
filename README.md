@@ -9,7 +9,7 @@
 Universidad Nacional del Altiplano  
 Facultad de Ingeniería Mecánica Eléctrica, Electrónica y Sistemas  
 Escuela Profesional de Ingeniería de Sistemas  
-Puno, Perú - 2024
+Puno, Perú - 2025
 
 ### Repositorio
 🔗 [https://github.com/AlexDanielQT/pascal-to-python](https://github.com/AlexDanielQT/pascal-to-python)
