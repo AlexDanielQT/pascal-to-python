@@ -24,10 +24,11 @@ LETTER      [a-zA-Z]
 IDENTIFIER  {LETTER}({LETTER}|{DIGIT}|_)*
 INTEGER     {DIGIT}+
 REAL        {DIGIT}+\.{DIGIT}+
-STRING      \"([^\"]|\"\")*\"
+STRING      "'"([^'\n]|"''")*"'"
 COMMENT     \{[^}]*\}
 WHITESPACE  [ \t\r]+
 NEWLINE     \n
+
 
 %%
 
@@ -68,16 +69,43 @@ NEWLINE     \n
 "read"              { return READ; }
 "clrscr"            { return CLRSCR; }
 
+"array"             { return ARRAY; }
+"of"                { return OF; }
+"record"            { return RECORD; }
+"set"               { return SET; }
+"pointer"           { return POINTER; }
+"case"              { return CASE; }
+"goto"              { return GOTO; }
+"label"             { return LABEL; }
+"const"             { return CONST; }
+"file"              { return FILE_TYPE; }
+"text"              { return TEXT_TYPE; }
+"with"              { return WITH; }
+"in"                { return IN; }
+
+"object"            { return OBJECT; }
+"class"             { return CLASS; }
+"constructor"       { return CONSTRUCTOR; }
+"destructor"        { return DESTRUCTOR; }
+"inherited"         { return INHERITED; }
+"private"           { return PRIVATE; }
+"protected"         { return PROTECTED; }
+"public"            { return PUBLIC; }
+
+"try"               { return TRY; }
+"except"            { return EXCEPT; }
+"finally"           { return FINALLY; }
+"raise"             { return RAISE; }
+
 {IDENTIFIER}        { yylval.str = strdup_custom(yytext); return IDENTIFIER; }
 {INTEGER}           { yylval.num = atoi(yytext); return NUMBER; }
 {REAL}              { yylval.real = atof(yytext); return REAL_NUM; }
-{STRING}            { 
-                      /* Remover comillas y procesar escape de comillas dobles */
+{STRING}            {
                       char* str = malloc(strlen(yytext) + 1);
                       int i, j;
                       for(i = 1, j = 0; i < strlen(yytext) - 1; i++, j++) {
-                          if(yytext[i] == '"' && yytext[i+1] == '"') {
-                              str[j] = '"';
+                          if(yytext[i] == '\'' && yytext[i+1] == '\'') {
+                              str[j] = '\'';
                               i++;
                           } else {
                               str[j] = yytext[i];
@@ -85,7 +113,7 @@ NEWLINE     \n
                       }
                       str[j] = '\0';
                       yylval.str = str;
-                      return STRING_VAL; 
+                      return STRING_VAL;
                     }
 
 ":="                { return ASSIGN; }
@@ -105,10 +133,15 @@ NEWLINE     \n
 ":"                 { return COLON; }
 "."                 { return DOT; }
 ","                 { return COMMA; }
+".."                { return RANGE_DOTS; }
+"^"                 { return POINTER_DEREF; }
+"@"                 { return ADDRESS_OF; }
 
-.                   { 
-                      fprintf(stderr, "Error léxico: caracter no reconocido '%c' en línea %d\n", 
-                              yytext[0], yylineno);
+.                   {
+                      fprintf(stderr, "Error léxico en línea %d: Caracter no reconocido '%c'. Verifique si es un operador válido o parte de una palabra clave.\n",
+                              yylineno, yytext[0]);
+                      // En un escenario real, podríamos querer devolver un token de error o intentar recuperarse.
+                      // Por ahora, simplemente reportamos y devolvemos el carácter.
                       return yytext[0];
                     }
 
