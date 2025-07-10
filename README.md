@@ -100,22 +100,10 @@ El traductor implementa una arquitectura de tres fases:
 ## 📁 Estructura del Proyecto
 
 ```
-pascal-to-python/
-├── src/
-│   ├── lexer.l          # Definiciones léxicas (Flex)
-│   ├── parser.y         # Gramática sintáctica (Bison)
-│   ├── translator.c     # Lógica de traducción
-│   └── utils.h          # Utilidades del sistema
-├── tests/
-│   ├── basic/           # Casos de prueba básicos
-│   ├── control/         # Estructuras de control
-│   ├── functions/       # Funciones y procedimientos
-│   └── complex/         # Programas complejos
-├── examples/
-│   ├── fermat.pas       # Ejemplo de programa Pascal
-│   └── fermat.py        # Código Python generado
-└── docs/
-    └── manual.pdf       # Documentación completa
+├── lexer.l          # Definiciones léxicas (Flex)
+├── parser.y         # Gramática sintáctica (Bison)
+├── main.c           # Lógica de traducción
+└── fermat.pas       # Ejemplo de programa Pascal
 ```
 
 ---
