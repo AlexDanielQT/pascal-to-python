@@ -28,7 +28,7 @@ begin
       begin
         z := total - x - y;
         if exp(x, n) + exp(y, n) = exp(z, n) then
-          writeln("hola, mundo");
+          writeln('hola, mundo');
       end;
     total := total + 1;
   end;
